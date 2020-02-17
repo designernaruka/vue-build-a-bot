@@ -2,7 +2,11 @@
     <div class="content">
         <button class="add-to-cat" @click="addToCart()">Add to Cart</button>
         <div class="top-row">
-            <div class="top part" :style="headBorderStyle">
+            <!-- <div class="top part" :class="{'sale-border': selectedRobot.head.onSale}">
+              Conditional added class only on sale -->
+            <!-- <div class="top part" :class="['sale-border']"> This class will always apply -->
+            <!-- Condition on Based with js  -->
+            <div class="top part" :class="[saleBorderClass, 'top', 'part']">
                 <div class="robot-name">
                     {{selectedRobot.head.title}}
                     <span v-show="selectedRobot.head.onSale" class="sale">Sale!</span>
@@ -83,11 +87,14 @@ export default {
     };
   },
   computed: {
+    saleBorderClass() {
+      return this.selectedRobot.head.onSale ? 'sale-border' : '';
+    },
     headBorderStyle() {
       return {
-        border: this.selectedRobot.head.onSale ?
-          '3px solid red' :
-          '3px solid #aaa' ,
+        border: this.selectedRobot.head.onSale
+          ? '3px solid red'
+          : '3px solid #aaa',
       };
     },
     selectedRobot() {
@@ -286,5 +293,8 @@ export default {
     }
     .cost {
         text-align: right;
+    }
+    .sale-border {
+      border: solid 3px red;
     }
 </style>
