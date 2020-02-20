@@ -62,6 +62,8 @@
 
 <script>
 import availabeleParts from '../data/parts';
+import createdHookMixin from './created-hook-mixin';
+import PartSelector from './PartSelector.vue';
 
 function getPreviousValidIndex(index, length) {
   const deprecatedIndex = index - 1;
@@ -72,7 +74,6 @@ function getNextValidIndex(index, length) {
   const incrementedIndex = index + 1;
   return incrementedIndex > length - 1 ? 0 : incrementedIndex;
 }
-
 export default {
   name: 'RobotBuilder',
   data() {
@@ -86,6 +87,7 @@ export default {
       selectedBaseIndex: 0,
     };
   },
+  mixins: [createdHookMixin],
   computed: {
     saleBorderClass() {
       return this.selectedRobot.head.onSale ? 'sale-border' : '';
@@ -144,13 +146,13 @@ export default {
     selectNextTorso() {
       this.selectedTorsoIndex = getNextValidIndex(
         this.selectedTorsoIndex,
-        availabeleParts.torso.length,
+        availabeleParts.torsos.length,
       );
     },
     selectPreviousTorso() {
       this.selectedTorsoIndex = getPreviousValidIndex(
         this.selectedTorsoIndex,
-        availabeleParts.torso.length,
+        availabeleParts.torsos.length,
       );
     },
     selectNextRightArm() {
@@ -168,133 +170,133 @@ export default {
     selectNextBase() {
       this.selectedBaseIndex = getNextValidIndex(
         this.selectedBaseIndex,
-        availabeleParts.base.length,
+        availabeleParts.bases.length,
       );
     },
     selectPreviousBase() {
       this.selectedBaseIndex = getPreviousValidIndex(
         this.selectedBaseIndex,
-        availabeleParts.base.length,
+        availabeleParts.bases.length,
       );
     },
   },
 };
 </script>
-<style>
-    .part {
-        position: relative;
-        width: 165px;
-        height: 165px;
-        border: 3px solid #aaa;
+<style lang="scss" scoped>
+  .part {
+    position: relative;
+    width: 165px;
+    height: 165px;
+    border: 3px solid #aaa;
+    img {
+      width: 165px;
     }
-    .part img {
-        width: 165px;
-    }
-    .top-row {
-        display: flex;
-        justify-content: space-around;
-    }
-    .middle-row {
-        display: flex;
-        justify-content: center;
-    }
-    .bottom-row {
-        display: flex;
-        justify-content: space-around;
-        border-top: none;
-    }
-    .head {
-        border-bottom: none;
-    }
-    .left {
-        border-right: none;
-    }
-    .right {
-        border-left: none;
-    }
-    .left img {
-        transform: rotate(-90deg);
-    }
-    .right img {
-        transform: rotate(90deg);
-    }
-    bottom {
-        border-top: none;
-    }
-    .prev-selector {
-        position: absolute;
-        z-index: 1;
-        top: -3px;
-        left: -28px;
-        width: 25px;
-        height: 171px;
-    }
-    .next-selector {
-        position: absolute;
-        z-index: 1;
-        top: -3px;
-        right: -28px;
-        width: 25px;
-        height: 171px;
-    }
-    .center .prev-selector,
-    .center .next-selector {
-        opacity: 0.8;
-    }
-    .left .prev-selector {
-        top: -28px;
-        left: -3px;
-        width: 144px;
-        height: 25px;
-    }
-    .left .next-selector {
-        top: auto;
-        bottom: -28px;
-        left: -3px;
-        width: 144px;
-        height: 25px;
-    }
-    .right .prev-selector {
-        top: -28px;
-        left: 24px;
-        width: 144px;
-        height: 25px;
-    }
-    .right .next-selector {
-        top: auto;
-        bottom: -28px;
-        left: -3px;
-        width: 171px;
-        height: 25px;
-    }
-    .robot-name {
-        position: absolute;
-        top: -25px;
-        text-align: center;
-        width: 100%;
-    }
-    .sale {
-        color: red;
-    }
-    .content {
-        position: relative;
-    }
-    .add-to-cart {
-        position: absolute;
-        right: 30px;
-        width: 220px;
-        padding: 3px;
-        font-size: 16px;
-    }
-    td, th {
-        text-align: left;
-        padding: 5px;
-        padding-left: 20px;
-    }
-    .cost {
-        text-align: right;
-    }
-    .sale-border {
-      border: solid 3px red;
-    }
+  }
+  .top-row {
+      display: flex;
+      justify-content: space-around;
+  }
+  .middle-row {
+    display: flex;
+    justify-content: center;
+  }
+  .bottom-row {
+    display: flex;
+    justify-content: space-around;
+    border-top: none;
+  }
+  .head {
+    border-bottom: none;
+  }
+  .left {
+    border-right: none;
+  }
+  .right {
+    border-left: none;
+  }
+  .left img {
+    transform: rotate(-90deg);
+  }
+  .right img {
+    transform: rotate(90deg);
+  }
+  bottom {
+    border-top: none;
+  }
+  .prev-selector {
+    position: absolute;
+    z-index: 1;
+    top: -3px;
+    left: -28px;
+    width: 25px;
+    height: 171px;
+  }
+  .next-selector {
+    position: absolute;
+    z-index: 1;
+    top: -3px;
+    right: -28px;
+    width: 25px;
+    height: 171px;
+  }
+  .center .prev-selector,
+  .center .next-selector {
+    opacity: 0.8;
+  }
+  .left .prev-selector {
+    top: -28px;
+    left: -3px;
+    width: 144px;
+    height: 25px;
+  }
+  .left .next-selector {
+    top: auto;
+    bottom: -28px;
+    left: -3px;
+    width: 144px;
+    height: 25px;
+  }
+  .right .prev-selector {
+    top: -28px;
+    left: 24px;
+    width: 144px;
+    height: 25px;
+  }
+  .right .next-selector {
+    top: auto;
+    bottom: -28px;
+    left: -3px;
+    width: 171px;
+    height: 25px;
+  }
+  .robot-name {
+    position: absolute;
+    top: -25px;
+    text-align: center;
+    width: 100%;
+  }
+  .sale {
+    color: red;
+  }
+  .content {
+    position: relative;
+  }
+  .add-to-cart {
+    position: absolute;
+    right: 30px;
+    width: 220px;
+    padding: 3px;
+    font-size: 16px;
+  }
+  td, th {
+    text-align: left;
+    padding: 5px;
+    padding-left: 20px;
+  }
+  .cost {
+    text-align: right;
+  }
+  .sale-border {
+    border: solid 3px red;
+  }
 </style>
