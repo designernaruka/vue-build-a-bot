@@ -263,4 +263,3 @@ export default {
     transform: rotate(-90deg);
   }
 </style>
-
