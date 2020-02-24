@@ -80,8 +80,8 @@
 <script>
 import availabeleParts from '../data/parts';
 import createdHookMixin from './created-hook-mixin';
-import PartSelector from './PartSelector.vue';
 import CollapsibelSection from '../shared/CollapsibelSection.vue';
+import PartSelector from './PartInfo.vue';
 
 export default {
   name: 'RobotBuilder',
