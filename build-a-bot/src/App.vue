@@ -49,9 +49,9 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }
 main {
-  padding: 30px 0;
+  padding: 30px;
   background-color: #ffffff;
-  width: 1024px;
+  width: 964px;
   min-height: 300px;
 }
 header {
