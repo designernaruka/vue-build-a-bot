@@ -17,9 +17,14 @@
         </ul>
       </nav>
     </header>
-    <main>
-      <router-view/>
-    </main>
+    <div class="container">
+      <aside class="aside">
+        <router-view name="sidebar" />
+      </aside>
+      <main>
+        <router-view/>
+      </main>
+    </div>
   </div>
 </template>
 
@@ -44,7 +49,6 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }
 main {
-  margin: 0 auto;
   padding: 30px 0;
   background-color: #ffffff;
   width: 1024px;
@@ -52,7 +56,7 @@ main {
 }
 header {
   background-color: #999;
-  width: 1024px;
+  width: 1184px;
   margin: 0 auto;
 }
 ul {
@@ -75,5 +79,16 @@ ul {
 }
 .router-link-active {
   color: #ffffff;
+}
+.container {
+  display: flex;
+  margin: 10px auto 10px auto;
+  justify-content: center;
+}
+.aside {
+  padding: 30px;
+  background-color: #aaa;
+  width: 100px;
+  min-height: 300px;
 }
 </style>
