@@ -71,7 +71,7 @@
 <script>
 import availabeleParts from '../data/parts';
 import createdHookMixin from './created-hook-mixin';
-import PartSelector from './PartSelector.vue';
+// import PartSelector from './PartSelector.vue';
 
 function getPreviousValidIndex(index, length) {
   const deprecatedIndex = index - 1;
