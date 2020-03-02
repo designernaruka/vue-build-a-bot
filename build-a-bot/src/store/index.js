@@ -13,4 +13,9 @@ export default new Vuex.Store({
       state.cart.push(robot);
     },
   },
+  getters: {
+    cartSaleItems(state) {
+      return state.card.filter(item => item.head.onSale);
+    },
+  },
 });
