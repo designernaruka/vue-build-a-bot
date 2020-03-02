@@ -1,6 +1,5 @@
-
 <template>
-    <div class="content">
+    <div v-if="availableParts" class="content">
         <div class="preview">
           <!-- <CollapsibelSection>
           </CollapsibelSection> Uncomment to show default content or multiple collapsable row -->
@@ -61,13 +60,16 @@
 </template>
 
 <script>
-import availabeleParts from '../data/parts';
+// import availabeleParts from '../data/parts';
 import createdHookMixin from './created-hook-mixin';
 import PartSelector from './PartSelector.vue';
 import CollapsibelSection from '../shared/CollapsibelSection.vue';
 
 export default {
   name: 'RobotBuilder',
+  created() {
+    this.$store.dispatch('getParts');
+  },
   beforeRouteLeave(to, from, next) {
     if (this.addedToCart) {
       next(true);
@@ -81,7 +83,7 @@ export default {
   components: { PartSelector, CollapsibelSection },
   data() {
     return {
-      availabeleParts,
+      // availabeleParts
       cart: [],
       selectedRobot: {
         head: {},
@@ -94,6 +96,9 @@ export default {
   },
   mixins: [createdHookMixin],
   computed: {
+    availabeleParts() {
+      return this.$store.state.parts;
+    },
     saleBorderClass() {
       return this.selectedRobot.head.onSale ? 'sale-border' : '';
     },
