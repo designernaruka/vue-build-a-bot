@@ -75,8 +75,8 @@ export default {
     text-align: right;
   }
   .saleItems {
-      margin-top: 50px;
-      font-size: 18px;
-      color: red;
+    margin-top: 50px;
+    font-size: 18px;
+    color: red;
   }
 </style>

@@ -158,7 +158,7 @@ export default {
   .right img {
     transform: rotate(90deg);
   }
-  bottom {
+  .bottom {
     border-top: none;
   }
   .prev-selector {
