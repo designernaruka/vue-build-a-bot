@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import availabeleParts from '../data/parts';
+// import availabeleParts from '../data/parts';
 import createdHookMixin from './created-hook-mixin';
 // import PartSelector from './PartSelector.vue';
 
@@ -86,7 +86,7 @@ export default {
   name: 'RobotBuilder',
   data() {
     return {
-      availabeleParts,
+      // availabeleParts,
       cart: [],
       selectedHeadIndex: 0,
       selectedLeftArmIndex: 0,

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="availableParts" class="content">
+    <div v-if="availabeleParts" class="content">
         <div class="preview">
           <!-- <CollapsibelSection>
           </CollapsibelSection> Uncomment to show default content or multiple collapsable row -->
@@ -83,7 +83,8 @@ export default {
   components: { PartSelector, CollapsibelSection },
   data() {
     return {
-      // availabeleParts
+      // availabeleParts,
+      addedToCart: false,
       cart: [],
       selectedRobot: {
         head: {},
@@ -118,7 +119,8 @@ export default {
             + robot.torso.cost
             + robot.rightArm.cost
             + robot.base.cost;
-      this.$store.commit('addRobotToCart', Object.assign({}, robot, { cost }));
+      this.$store.dispatch('addRobotToCart', Object.assign({}, robot, { cost }))
+        .then(() => this.$router.push('/cart'));
       this.cart.push();
       this.addedToCart = true;
     },
