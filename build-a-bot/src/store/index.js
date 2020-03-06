@@ -2,14 +2,19 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import robotosModules from './modules/robots';
-import usersModules from './modules/users';
+import robotosModule from './modules/robots';
+import usersModule from './modules/users';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  state: {
+    foo: 'root-foo',
+  },
   modules: {
-    robots: robotosModules,
-    users: usersModules,
+    robots: robotosModule,
+    users: usersModule,
+  },
+  getters: {
   },
 });
